@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Minty</title>
+
+    <!--stylesheets-->
+    <link href="css/style.css" rel="stylesheet" />
+    <link href="css/reset.css" rel="stylesheet" />
+    <link href="css/bootstrap-grid.css" rel="stylesheet" />
+
+    <!--fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Epilogue:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet" />
+
+    <!--scrpting-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script src="js/site.js" defer></script>
+    <script src="js/curency.js" defer></script>
+
+  </head>
+  <body>
+    <div class="Contaner">
+      <header>
+        <div class="word">
+          <span>M</span>
+          <span>i</span>
+          <span>n</span>
+          <span>t</span>
+          <span>y</span>
+        </div>
+      </header>
+     <button class="btnpushable">
+        <span class="shadow"></span>
+        <span class="edge"></span>
+        <span class="front"> Enter Your Exspances </span>
+      </button>
+    </div>
+    <div id="popupContainer" class="popup hidden">
+        <div class="input-container"> 
+          <input type="text" name="currency-field" class="currency-field" id="currency-field" pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$" value="" data-type="currency" placeholder="Please enter amount">    
+        </div>
+        <input type="text" class="business" placeholder="Enter Place of Sale" />
+        <input type="text" class="item" placeholder="Please Enter Item Name" />
+        <input type="date" class="date" placeholder="mm/dd/yy" />
+       <div class="button-container">
+            <button class="btnsubmit">
+              <span class="shadow"></span>
+              <span class="edge"></span>
+              <span class="front"> submit </span>
+            </button>
+            <button class="btnreset">
+              <span class="shadow"></span>
+              <span class="edge"></span>
+              <span class="front"> Reset </span>
+            </button>        
+      </div>
+    </div>
+      <div id="expense-container">
+        <div class="container">
+          <div class="row">
+              <section class="expense-overview">
+                 <p id="expense-total">$0</p>
+                 <p class="date">Last 30 days</p>
+              </section>
+              <section class="expense-information">
+                 <ul class="expense-list">
+                 </ul>
+             </section>
+        </div>
+      </div>
+    </div>
+   </div>
+  </body>
+</html>
