@@ -1,3 +1,6 @@
+let totalAmount = document.getElementById("expense-total");
+let expenseList = document.querySelector(".expense-list");
+
 document.addEventListener("DOMContentLoaded", () => {
   var btnPopup = document.getElementsByClassName("btnpushable")[0];
   var popup = document.getElementById("popupContainer");
@@ -7,8 +10,6 @@ document.addEventListener("DOMContentLoaded", () => {
   var business = document.querySelector(".business");
   var item = document.querySelector(".item");
   var date = document.getElementsByClassName(".date");
-  let totalAmount = document.getElementById("expense-total");
-  let expenseList = document.querySelector(".expense-list");
 
   btnPopup.addEventListener("click", function () {
     if (popup.classList.contains("hidden")) {
@@ -17,52 +18,6 @@ document.addEventListener("DOMContentLoaded", () => {
       popup.classList.add("hidden");
     }
   });
-
-  function createExpenseItem(data) {
-    let newExpenseItem = document.createElement("li");
-    newExpenseItem.classList.add("expense");
-
-    newExpenseItem.innerHTML = `
-        <div class = "expense-card">
-          <div class="expense-details">
-            <p class="expense-business">Business: ${data.business}</p>
-            <p class="expense-item">Item: ${data.item}</p>
-            <p class="expense-date">Paid on: ${data.date}</p>
-          </div>
-
-
-          <p class="expense-amount">- $${data.amount}</p>
-
-        </div>
-    `;
-
-    expenseList.appendChild(newExpenseItem);
-  }
-
-  function hidePopup() {
-    popupContainer.classList.add("hide");
-    popupContainer.style.opacity = "1";
-  }
-
-  let total = 0;
-
-  function updateExpenseOverview(amount) {
-    amount = amount.replace(/[^0-9.]/g, "");
-
-    const parsedAmount = parseFloat(amount);
-    if (isNaN(parsedAmount) || parsedAmount < 0) {
-      console.error("Invalid amount:", amount);
-      return; // Exit the function if the input is not a valid number or is negative
-    }
-
-    total += parsedAmount;
-
-    if (totalAmount) {
-      totalAmount.innerText = "$" + total.toFixed(2);
-    } else {
-      console.error("Element with id 'totalAmount' not found.");
-    }
-  }
 
   btnreset.addEventListener("click", function () {
     var inputs = document.querySelectorAll('.popup input[type="text"]');
@@ -78,12 +33,6 @@ document.addEventListener("DOMContentLoaded", () => {
     let Ebusiness = business.value;
     let Eitem = item.value;
     let rawdate = date.value;
-
-    //
-    // if (!Eamount || !Ebusiness || !Eitem || !rawdate) {
-    //   alert("Please fill in all fields.");
-    //   return;
-    // }
 
     let formattedDate = moment(rawdate).format("MM/DD/YY");
 
@@ -118,3 +67,51 @@ spans.forEach((span, idx) => {
     750 * (idx + 1),
   );
 });
+
+// Functions for the site
+
+function createExpenseItem(data) {
+  let newExpenseItem = document.createElement("li");
+  newExpenseItem.classList.add("expense");
+
+  newExpenseItem.innerHTML = `
+        <div class = "expense-card">
+          <div class="expense-details">
+            <p class="expense-business">Business: ${data.business}</p>
+            <p class="expense-item">Item: ${data.item}</p>
+            <p class="expense-date">Paid on: ${data.date}</p>
+          </div>
+
+
+          <p class="expense-amount">- $${data.amount}</p>
+
+        </div>
+    `;
+
+  expenseList.appendChild(newExpenseItem);
+}
+
+function hidePopup() {
+  popupContainer.classList.add("hide");
+  popupContainer.style.opacity = "1";
+}
+
+let total = 0;
+
+function updateExpenseOverview(amount) {
+  amount = amount.replace(/[^0-9.]/g, "");
+
+  const parsedAmount = parseFloat(amount);
+  if (isNaN(parsedAmount) || parsedAmount < 0) {
+    console.error("Invalid amount:", amount);
+    return; // Exit the function if the input is not a valid number or is negative
+  }
+
+  total += parsedAmount;
+
+  if (totalAmount) {
+    totalAmount.innerText = "$" + total.toFixed(2);
+  } else {
+    console.error("Element with id 'totalAmount' not found.");
+  }
+}
